@@ -1,6 +1,7 @@
 <?php
 $title = 'Attendees';
 require_once 'includes/header.php';
+require_once 'includes/auth_check.php';
 require_once 'db/conn.php';
 
 $results = $crud->getAttendees();
@@ -27,8 +28,7 @@ $results = $crud->getAttendees();
                 <td>
                     <a href="view.php?id=<?php echo $r['attendee_id'] ?>" class="btn btn-outline-light">view</a>
                     <a href="edit.php?id=<?php echo $r['attendee_id'] ?>" class="btn btn-outline-primary">edit</a>
-                    <a onclick="return confirm('Are you sure you want to delete this record?')" 
-                    href="delete.php?id=<?php echo $r['attendee_id'] ?>" class="btn btn-outline-danger">delete</a>
+                    <a onclick="return confirm('Are you sure you want to delete this record?')" href="delete.php?id=<?php echo $r['attendee_id'] ?>" class="btn btn-outline-danger">delete</a>
                 </td>
             </tr>
         <?php } ?>

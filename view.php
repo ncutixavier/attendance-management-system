@@ -1,6 +1,7 @@
 <?php
 $title = 'Attendees';
 require_once 'includes/header.php';
+require_once 'includes/auth_check.php';
 require_once 'db/conn.php';
 
 //Get attendee by id
@@ -12,7 +13,11 @@ if (!isset($_GET['id'])) {
 ?>
 
     <div class="d-flex justify-content-center my-5">
-        <div class="card" style="width: 25rem;">
+        <div class="card" style="width: 30rem;">
+            <div style="width: 250px; height: 250px">
+                <img src="<?php echo empty($result['avatar_path']) ? 'uploads/download.png' : $result['avatar_path'] ?>" 
+                class="card-img-top" width="100%">
+            </div>
             <div class="card-body">
                 <h5 class="card-title"><?php echo $result['name']; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $result['professional_name']; ?></h6>

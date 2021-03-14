@@ -10,11 +10,11 @@ class crud
         $this->db = $conn;
     }
 
-    public function insertAttendees($name, $dob, $phone, $prof, $profile, $email)
+    public function insertAttendees($name, $dob, $phone, $prof, $profile, $email, $avatar_path)
     {
         try {
             //define sql to be executed
-            $sql = "INSERT INTO attendee (email,dob,phone,professional_id,profile,name) VALUES (:email,:dob,:phone,:prof,:profile,:name)";
+            $sql = "INSERT INTO attendee (email,dob,phone,professional_id,profile,name,avatar_path) VALUES (:email,:dob,:phone,:prof,:profile,:name,:avatar_path)";
 
             //prepare sql statetement for executed
             $stmt = $this->db->prepare($sql);
@@ -26,6 +26,7 @@ class crud
             $stmt->bindparam(':prof', $prof);
             $stmt->bindparam(':profile', $profile);
             $stmt->bindparam(':name', $name);
+            $stmt->bindparam(':avatar_path', $avatar_path);
 
             $stmt->execute();
             return true;
@@ -75,6 +76,21 @@ class crud
         try {
             $sql = "SELECT * FROM `professional`";
             $result = $this->db->query($sql);
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getProfessionalsById($id)
+    {
+        try {
+            $sql = "SELECT * FROM `professional` WHERE professional_id='$id'";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetch();
             return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
