@@ -5,7 +5,7 @@ require_once 'db/conn.php';
 $results = $crud->getProfessionals();
 ?>
 <h1>Register</h1>
-<form class="my-5" method="post" action="success.php">
+<form class="my-5" method="post" action="success.php" enctype="multipart/form-data">
     <div class="mb-3 form-group">
         <label for="name" class="form-label">Name</label>
         <input required type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
@@ -35,6 +35,10 @@ $results = $crud->getProfessionals();
     <div class="mb-3">
         <label for="profile" class="form-label">Profile</label>
         <textarea class="form-control" id="profile" name="profile" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="avatar" class="form-label">Upload Photo</label>
+        <input type="file" id="avatar" name="avatar" class="form-control" accept="image/*">
     </div>
     <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
 </form>

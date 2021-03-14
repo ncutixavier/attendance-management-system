@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/auth_check.php';
 require_once 'db/conn.php';
 
 //get values from post
@@ -26,4 +27,3 @@ if (isset($_POST['submit'])) {
     }else{
     include 'includes/errorMessage.php';
     }
-?>
